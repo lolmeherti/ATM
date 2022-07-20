@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>825955769358-v8hn4hritt3uhteils5rfb6j7o5pa3fn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.825955769358-v8hn4hritt3uhteils5rfb6j7o5pa3fn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDAZzjv2PaD5_eII9XZ7FZ9gRydGB_QuOM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>825955769358</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>swiftdev.ATM-2-0</string>
+	<key>PROJECT_ID</key>
+	<string>atm-iosapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>atm-iosapp.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:825955769358:ios:c6a1df656f38811253b05f</string>
+</dict>
+</plist>
