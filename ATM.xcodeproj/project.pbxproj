@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D5126BD1456B525BA4BD3ACF /* Pods_ATM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5390F5FB1DF3729032D45B4C /* Pods_ATM.framework */; };
+		EC7A6C2D288A7CBC0054E5B7 /* CreditCardValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A6C2C288A7CBC0054E5B7 /* CreditCardValidator.swift */; };
 		EC7D806C2887CC22004938B6 /* ATMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D806B2887CC22004938B6 /* ATMApp.swift */; };
 		EC7D806E2887CC22004938B6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D806D2887CC22004938B6 /* ContentView.swift */; };
 		EC7D80702887CC23004938B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7D806F2887CC23004938B6 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		5390F5FB1DF3729032D45B4C /* Pods_ATM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ATM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8136CA0FB92905FF1C1B4CAC /* Pods-ATM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATM.release.xcconfig"; path = "Target Support Files/Pods-ATM/Pods-ATM.release.xcconfig"; sourceTree = "<group>"; };
 		EAB710CA6B1AA78C93DB347B /* Pods-ATM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATM.debug.xcconfig"; path = "Target Support Files/Pods-ATM/Pods-ATM.debug.xcconfig"; sourceTree = "<group>"; };
+		EC7A6C2C288A7CBC0054E5B7 /* CreditCardValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardValidator.swift; sourceTree = "<group>"; };
 		EC7D80682887CC22004938B6 /* ATM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7D806B2887CC22004938B6 /* ATMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATMApp.swift; sourceTree = "<group>"; };
 		EC7D806D2887CC22004938B6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,8 +63,15 @@
 				EAB710CA6B1AA78C93DB347B /* Pods-ATM.debug.xcconfig */,
 				8136CA0FB92905FF1C1B4CAC /* Pods-ATM.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EC7A6C2B288A7CA00054E5B7 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				EC7A6C2C288A7CBC0054E5B7 /* CreditCardValidator.swift */,
+			);
+			path = Validators;
 			sourceTree = "<group>";
 		};
 		EC7D805F2887CC22004938B6 = {
@@ -86,6 +95,7 @@
 		EC7D806A2887CC22004938B6 /* ATM */ = {
 			isa = PBXGroup;
 			children = (
+				EC7A6C2B288A7CA00054E5B7 /* Validators */,
 				EC7D806B2887CC22004938B6 /* ATMApp.swift */,
 				EC7D807E2887D830004938B6 /* Models */,
 				EC7D807F2887D838004938B6 /* ViewModels */,
@@ -256,6 +266,7 @@
 				EC7D80842887D85E004938B6 /* UserViewModel.swift in Sources */,
 				EC7D80822887D850004938B6 /* UserModel.swift in Sources */,
 				EC7D806C2887CC22004938B6 /* ATMApp.swift in Sources */,
+				EC7A6C2D288A7CBC0054E5B7 /* CreditCardValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
