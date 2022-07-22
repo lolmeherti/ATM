@@ -7,21 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D5126BD1456B525BA4BD3ACF /* Pods_ATM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5390F5FB1DF3729032D45B4C /* Pods_ATM.framework */; };
 		EC7D806C2887CC22004938B6 /* ATMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D806B2887CC22004938B6 /* ATMApp.swift */; };
 		EC7D806E2887CC22004938B6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D806D2887CC22004938B6 /* ContentView.swift */; };
 		EC7D80702887CC23004938B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7D806F2887CC23004938B6 /* Assets.xcassets */; };
 		EC7D80732887CC24004938B6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7D80722887CC24004938B6 /* Preview Assets.xcassets */; };
 		EC7D807A2887CF8E004938B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC7D80792887CF8E004938B6 /* GoogleService-Info.plist */; };
 		EC7D807D2887D019004938B6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EC7D807C2887D019004938B6 /* FirebaseFirestore */; };
+		EC7D80822887D850004938B6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D80812887D850004938B6 /* UserModel.swift */; };
+		EC7D80842887D85E004938B6 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D80832887D85E004938B6 /* UserViewModel.swift */; };
+		EC7D80862887D884004938B6 /* UserLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D80852887D884004938B6 /* UserLoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5390F5FB1DF3729032D45B4C /* Pods_ATM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ATM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8136CA0FB92905FF1C1B4CAC /* Pods-ATM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATM.release.xcconfig"; path = "Target Support Files/Pods-ATM/Pods-ATM.release.xcconfig"; sourceTree = "<group>"; };
+		EAB710CA6B1AA78C93DB347B /* Pods-ATM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATM.debug.xcconfig"; path = "Target Support Files/Pods-ATM/Pods-ATM.debug.xcconfig"; sourceTree = "<group>"; };
 		EC7D80682887CC22004938B6 /* ATM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7D806B2887CC22004938B6 /* ATMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATMApp.swift; sourceTree = "<group>"; };
 		EC7D806D2887CC22004938B6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EC7D806F2887CC23004938B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC7D80722887CC24004938B6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EC7D80792887CF8E004938B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EC7D80812887D850004938B6 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		EC7D80832887D85E004938B6 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		EC7D80852887D884004938B6 /* UserLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,17 +40,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC7D807D2887D019004938B6 /* FirebaseFirestore in Frameworks */,
+				D5126BD1456B525BA4BD3ACF /* Pods_ATM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01ED06E7AF67F15C707FE5D2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5390F5FB1DF3729032D45B4C /* Pods_ATM.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4E98AFB2C0AAEA11E72F4FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EAB710CA6B1AA78C93DB347B /* Pods-ATM.debug.xcconfig */,
+				8136CA0FB92905FF1C1B4CAC /* Pods-ATM.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EC7D805F2887CC22004938B6 = {
 			isa = PBXGroup;
 			children = (
 				EC7D806A2887CC22004938B6 /* ATM */,
 				EC7D80692887CC22004938B6 /* Products */,
+				D4E98AFB2C0AAEA11E72F4FA /* Pods */,
+				01ED06E7AF67F15C707FE5D2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,8 +87,11 @@
 			isa = PBXGroup;
 			children = (
 				EC7D806B2887CC22004938B6 /* ATMApp.swift */,
-				EC7D806D2887CC22004938B6 /* ContentView.swift */,
+				EC7D807E2887D830004938B6 /* Models */,
+				EC7D807F2887D838004938B6 /* ViewModels */,
+				EC7D80802887D83E004938B6 /* Views */,
 				EC7D80792887CF8E004938B6 /* GoogleService-Info.plist */,
+				EC7D806D2887CC22004938B6 /* ContentView.swift */,
 				EC7D806F2887CC23004938B6 /* Assets.xcassets */,
 				EC7D80712887CC24004938B6 /* Preview Content */,
 			);
@@ -72,6 +106,30 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		EC7D807E2887D830004938B6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EC7D80812887D850004938B6 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EC7D807F2887D838004938B6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				EC7D80832887D85E004938B6 /* UserViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		EC7D80802887D83E004938B6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EC7D80852887D884004938B6 /* UserLoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -79,9 +137,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC7D80762887CC24004938B6 /* Build configuration list for PBXNativeTarget "ATM" */;
 			buildPhases = (
+				DBB91C98B347309F3EEFA391 /* [CP] Check Pods Manifest.lock */,
 				EC7D80642887CC22004938B6 /* Sources */,
 				EC7D80652887CC22004938B6 /* Frameworks */,
 				EC7D80662887CC22004938B6 /* Resources */,
+				8B6939BFBD7C039C1587FBC0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -144,12 +204,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8B6939BFBD7C039C1587FBC0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ATM/Pods-ATM-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ATM/Pods-ATM-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ATM/Pods-ATM-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBB91C98B347309F3EEFA391 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ATM-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EC7D80642887CC22004938B6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC7D80862887D884004938B6 /* UserLoginView.swift in Sources */,
 				EC7D806E2887CC22004938B6 /* ContentView.swift in Sources */,
+				EC7D80842887D85E004938B6 /* UserViewModel.swift in Sources */,
+				EC7D80822887D850004938B6 /* UserModel.swift in Sources */,
 				EC7D806C2887CC22004938B6 /* ATMApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +378,7 @@
 		};
 		EC7D80772887CC24004938B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAB710CA6B1AA78C93DB347B /* Pods-ATM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -301,6 +407,7 @@
 		};
 		EC7D80782887CC24004938B6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8136CA0FB92905FF1C1B4CAC /* Pods-ATM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
