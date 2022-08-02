@@ -6,3 +6,22 @@
 *.plist
 
 *.pbxproj
+
+DerivedData/ATM/Build/Intermediates.noindex/abseil.build/Debug-iphonesimulator/abseil.build/
+
+*.LinkFileList
+
+*.modulemap
+
+DerivedData/ATM/Build/Intermediates.noindex/BoringSSL-GRPC.build/Debug-iphonesimulator/openssl_grpc.build/Objects-normal/x86_64/
+
+*.d
+
+DerivedData/ATM/Index/DataStore/v5/units/
+
+DerivedData
+
+Pods
+
+Podfile.lock
+
