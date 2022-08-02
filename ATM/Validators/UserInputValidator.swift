@@ -24,7 +24,7 @@ struct UserInputValidator {
     
     func userPhoneNumberValidator(phone_number:String) -> Bool{
         do{
-            let regexPatternForPhoneNumber = "#([+][0-9]{8,17})$#"
+            let regexPatternForPhoneNumber = "(^[+]?[0-9]{8,17})$"
             let userPhoneNumberRegex = try NSRegularExpression(pattern: regexPatternForPhoneNumber, options: .caseInsensitive)
             let range = NSRange(location: 0, length: phone_number.count)
             if (userPhoneNumberRegex.firstMatch(in: phone_number, options:[], range: range) != nil){
