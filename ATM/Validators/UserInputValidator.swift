@@ -17,18 +17,9 @@ struct UserInputValidator {
     }
     
     func userEmailValidator(email:String)->Bool{
-        do{
-            let regexPatternForEmail = "#[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}#"
-            let userEmailRegex = try NSRegularExpression(pattern: regexPatternForEmail, options: .caseInsensitive)
-            let range = NSRange(location: 0, length: email.count)
-            if (userEmailRegex.firstMatch(in: email, options:[], range: range) != nil){
-                return true
-            } else {
-                return false
-            }
-        } catch {
-            return false
-        }
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+                let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+                return emailTest.evaluate(with: email)
     }
     
     func userPhoneNumberValidator(phone_number:String) -> Bool{
