@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+//configurations for credit card format
 let amountOfDigitsInAccountNumberCountingHyphens = 19
 let amountOfDigitsInAccountNumber = 16
 
