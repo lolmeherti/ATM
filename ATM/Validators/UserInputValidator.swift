@@ -10,18 +10,10 @@ import Foundation
 struct UserInputValidator {
     
     func userNameValidator(name:String) -> Bool{
-        do{
-            let regexPatternForName = "#(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})#"
-            let userNameRegex = try NSRegularExpression(pattern: regexPatternForName, options: .caseInsensitive)
-            let range = NSRange(location: 0, length: name.count)
-            if (userNameRegex.firstMatch(in: name, options:[], range: range) != nil){
-                return true
-            } else {
-                return false
-            }
-        } catch {
-            return false
-        }
+        
+        let nameRegExPattern = "(^[A-Za-z]{4,25})$"
+           let userName = NSPredicate(format:"SELF MATCHES %@", nameRegExPattern)
+        return userName.evaluate(with: name)
     }
     
     func userEmailValidator(email:String)->Bool{
