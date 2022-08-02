@@ -13,85 +13,97 @@ struct UserLoginView: View {
     @State var pinNumber: String = ""
     
     var body: some View {
-        //addressing the ZStack in order to integrate a gradient background color
-        ZStack{
-            
-            //defining the gradient type and colors for the ZStack
-            LinearGradient(gradient: Gradient(colors: [Color("Charcoal"), Color("DarkColorGradient")]), startPoint: .top, endPoint: .bottom)
-                .edgesIgnoringSafeArea(.vertical)
-            
-            //main VStack to arrange elements vertically underneath each other
-            VStack{
+        NavigationView{
+            //addressing the ZStack in order to integrate a gradient background color
+            ZStack{
                 
+                //defining the gradient type and colors for the ZStack
+                LinearGradient(gradient: Gradient(colors: [Color("Charcoal"), Color("DarkColorGradient")]), startPoint: .top, endPoint: .bottom)
+                    .edgesIgnoringSafeArea(.vertical)
+                
+                //main VStack to arrange elements vertically underneath each other
                 VStack{
-                    Image(systemName: "shekelsign.square")
-                        .padding(.top, 50)
-                        .padding(.bottom, 50)
-                        .font(.system(size: 75))
-                        .foregroundColor(Color("Yellow"))
                     
-                    Text("Account Number")
-                        .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(.white)
-                        .fontWeight(.semibold)
-                        .multilineTextAlignment(.center)
+                    VStack{
+                        Image(systemName: "shekelsign.square")
+                            .padding(.top, 50)
+                            .padding(.bottom, 50)
+                            .font(.system(size: 75))
+                            .foregroundColor(Color("Yellow"))
+                        
+                        Text("Account Number")
+                            .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.white)
+                            .fontWeight(.semibold)
+                            .multilineTextAlignment(.center)
                         
                         
-                    TextField("xxxx-xxxx-xxxx-xxxx", text: $accountNumber)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .multilineTextAlignment(.center)
-                    //.keyboardType(.decimalPad)
-                    .padding(.horizontal, 8)
-                    .padding(.bottom, 20)
-                    
-                    Text("5-Digit Pin")
-                        .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(.white)
-                        .fontWeight(.semibold)
-                        .multilineTextAlignment(.center)
-                    
-                    TextField("xxxxx", text: $pinNumber)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .multilineTextAlignment(.center)
-                    .keyboardType(.decimalPad)
-                    .padding(.horizontal, 8)
-                    
-                    Spacer()
-                    
-                    Spacer()
-                    
-                    HStack{
+                        TextField("xxxx-xxxx-xxxx-xxxx", text: $accountNumber)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 8)
+                            .padding(.bottom, 20)
                         
-                        //button to request user login with credentials
-                        Button {
-                             
-                        } label: {
-                            Text("Login")
-                                .fontWeight(.semibold)
-                                .font(.title)
+                        Text("5-Digit Pin")
+                            .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.white)
+                            .fontWeight(.semibold)
+                            .multilineTextAlignment(.center)
+                        
+                        TextField("xxxxx", text: $pinNumber)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .multilineTextAlignment(.center)
+                            .keyboardType(.decimalPad)
+                            .padding(.horizontal, 8)
+                        
+                        Spacer()
+                        
+                        Spacer()
+                        
+                        HStack{
+                            
+                            //button to request user login with credentials
+                            Button {
+                                let userViewModelInstance = UserViewModel()
+                                let userLoggedIn = userViewModelInstance.loginUser(
+                                    accountNumber: accountNumber,
+                                    pinCode: pinNumber)
+                                
+                                if(userLoggedIn){
+                                    //TODO REDIRECT TO A LOGIN VIEW Q_Q
+                                }else{
+                                    //TODO SHOW AN ALERT IF THE LOGIN FAILED
+                                }
+                                
+                                
+                            } label: {
+                                Text("Login")
+                                    .fontWeight(.semibold)
+                                    .font(.title)
+                            }
+                            
+                            .padding([.horizontal], 80)
+                            .padding([.vertical], 10)
+                            
+                            .foregroundColor(Color("Charcoal"))
+                            .background(LinearGradient(gradient: Gradient(colors: [Color("Yellow"), Color("LighterYellow")]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(25)
                         }
-                        
-                        .padding([.horizontal], 80)
-                        .padding([.vertical], 10)
-                        
-                        .foregroundColor(Color("Charcoal"))
-                        .background(LinearGradient(gradient: Gradient(colors: [Color("Yellow"), Color("LighterYellow")]), startPoint: .leading, endPoint: .trailing))
-                        .cornerRadius(25)
+                        .padding(.bottom, 25)
                     }
-                }
-                
-                Spacer()
-                
-                Button {
+
+                    Spacer()
                     
-                } label: {
-                    Text("Sign Up")
+                    NavigationLink(
+                        destination: UserSignUpView()){
+                            Text("Sign Up") //this sign up text sends the user to the sign up view
+                        }
+                    }
+                    .padding()
                 }
-                .padding()
             }
         }
     }
-}
 
 
 struct UserLoginView_Previews: PreviewProvider {
