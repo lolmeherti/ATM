@@ -25,3 +25,11 @@ Pods
 
 Podfile.lock
 
+
+*.xcworkspacedata
+
+ATM.xcodeproj/xcuserdata/swiftdev.xcuserdatad/xcdebugger/
+
+ATM.xcworkspace/xcuserdata/swiftdev.xcuserdatad/xcdebugger/
+
+ATM.xcworkspace/
