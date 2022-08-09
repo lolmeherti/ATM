@@ -37,6 +37,34 @@ struct UserInputValidator {
         }
     }
     
+    func userPassportIdValidator(passport_id:String) -> Bool{
+        if(passport_id.count >= 8){
+            return true
+        }
+        return false
+    }
+    
+    func userAddressValidator(address:String) -> Bool{
+        if(address.count >= 5){
+            return true
+        }
+        return false
+    }
+    
+    func userCityValidator(city:String) -> Bool{
+        if(city.count > 3){
+            return true
+        }
+        return false
+    }
+    
+    func userCountryValidator(country:String) -> Bool{
+        if(country.count > 3){
+            return true
+        }
+        return false
+    }
+    
 }
 
 
