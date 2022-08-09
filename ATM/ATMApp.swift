@@ -17,7 +17,7 @@ struct ATMApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            UserLoginView()
         }
     }
 }
