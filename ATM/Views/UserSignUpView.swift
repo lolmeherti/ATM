@@ -45,11 +45,11 @@ struct UserSignUpView: View {
     @State var showSignUpAlert:Bool = false
     @State var userDatePickerValueSet = false
     
-    //---Alert Text Configuration---//
+    //---ALERT TEXT CONFIG---//
     @State var signUpAlertTitle:String = "Error"
     @State var signUpAlertString:String = "The following field(s) are empty or incorrect:\n"
     @State var signUpAlertButtonText:String = "TRY AGAIN"
-    //---Alert Text Configuration---//
+    //---ALERT TEXT CONFIG---//
     
     //---DATABASE ERROR VARIABLE---//
     @State var signUpSucceeded:Bool = false
@@ -243,7 +243,7 @@ struct UserSignUpView: View {
                         //-----VALIDATION SECTION-----//
                         
                         
-                        //---CREATES THE NEW USER---//
+                        //---CREATES THE NEW USER IF ALL VALIDATIONS PASSED---//
                         if(isValidFirstName &&
                            isValidLastName &&
                            isValidPersonalIdNumber &&
@@ -260,28 +260,30 @@ struct UserSignUpView: View {
                                     //---ENABLES ALERT POP-UP---//
                                     showSignUpAlert = true
                                     
-                                    //---SETS NEW ERROR MESSAGE IF THE DATABASE FAILS TO INSERT---//
-                                    
+                                    //---SETS NEW ERROR MESSAGE IF THE DATABASE FAILS TO INSERT BECAUSE OF DUPLICATE PASSPORT ID---//
                                     self.signUpAlertTitle = "Registration failed!"
                                     self.signUpAlertString = "Duplicate user detected. If you forgot your login details, please contact our support team!"
                                     self.signUpAlertButtonText = "TRY AGAIN"
                                 } else {
-                                    self.signUpSucceeded = UserViewModel().createNewUser(userDetails:userInput)
+                                    //---CREATES A NEW USER AND DELIVERS BACK THE LOGIN DETAILS BECAUSE THEY ARE AUTOMATICALLY GENERATED---//
+                                    self.signUpSucceeded = UserViewModel().createNewUser(userDetails:userInput) { creditCardDetails in
+                                        let creditCardAccountNumber:String = creditCardDetails["card_account_number"] ?? ""
+                                        let creditCardPinCode:String = creditCardDetails["card_pin_code"] ?? ""
+                                        //---PASSES THE LOGIN DETAILS TO SET THE SUCCESS ALERT---//
+                                        self.setSuccessAlert(accountNumber: creditCardAccountNumber, pinCode: creditCardPinCode)
+                                    }
                                     
                                     //---ENABLES ALERT POP-UP---//
                                     showSignUpAlert = true
                                     
-                                    //---SETS NEW ERROR MESSAGE IF THE DATABASE FAILS TO INSERT---//
-                                    if(signUpSucceeded){
-                                        self.signUpAlertTitle = "Registration successful!"
-                                        self.signUpAlertString = "Please manually navigate back to the login form."
-                                        self.signUpAlertButtonText = "CONTINUE"
-                                    } else {
-                                        self.signUpAlertString = "Database connection error. \n Make sure you are connected to the internet or try again later."
+                                    //---SETS NEW ALERT MESSAGE IF THE DATABASE THE INSERT SUCCEEDED---//
+                                    if(!signUpSucceeded){
+                                        self.signUpAlertTitle = "Registration failed!"
+                                        self.signUpAlertString = "Please make sure you have a working internet connection or try again later."
+                                        self.signUpAlertButtonText = "TRY AGAIN"
                                     }
                                 }
                             })
-                            
                         } else {
                             //---SECTION: COMPILES THE CUSTOM ERROR MESSAGE---//
                             if(!isValidFirstName){
