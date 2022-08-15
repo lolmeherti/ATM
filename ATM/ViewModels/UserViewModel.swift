@@ -15,11 +15,13 @@ class UserViewModel: ObservableObject{
     
     //Creates a new user
     //Takes array as parameter and expects array keys: first_name, last_name, passport_id, email, phone_number,date_of_birth,address,country, timestamp and role
-    func createNewUser(userDetails:[String:Any]) -> Bool{
+    func createNewUser(userDetails:[String:Any], completion: @escaping ([String:String]) -> Void) -> Bool{
         
         let db = Firestore.firestore()
+        var insertedDocumentReference:DocumentReference? = nil
+        var creditCardDetails:[String:String] = ["":""]
         
-        db.collection("user_table").addDocument(data: [
+        insertedDocumentReference = db.collection("user_table").addDocument(data: [
             "user_first_name" : userDetails["first_name"] ?? "" as String,
             "user_last_name" : userDetails["last_name"] ?? "" as String,
             "user_passport_id" : userDetails["passport_id"] ?? "" as String,
@@ -32,9 +34,19 @@ class UserViewModel: ObservableObject{
             "user_role" : userDetails["role"] ?? "" as String
         ]) { error in
             if (error == nil) {
+                //---IF THERE ARE NO ERRORS, GENERATE A CREDIT CARD FOR THIS NEWLY SIGNED UP USER---//
+                CreditCardViewModel().generateCreditCardForUserById(userId: insertedDocumentReference!.documentID, completion: { creditCardReference in
+                    
+                    CreditCardViewModel().getCreditCardDetailsById(creditCardId: creditCardReference["credit_card_id"] as! String) { creditCardData in
+                        creditCardDetails["card_account_number"] = creditCardData["card_account_number"] as? String ?? ""
+                        creditCardDetails["card_pin_code"] = creditCardData["card_pin_code"] as? String ?? ""
+                        
+                        completion(creditCardDetails)
+                    }
+                })
                 self.getAllUsers()
             } else {
-                self.insertSuccessful = false
+                self.insertSuccessful.toggle()
             }
         }
         return self.insertSuccessful
@@ -77,11 +89,10 @@ class UserViewModel: ObservableObject{
             
             if(error != nil) {
                 print("Error: \(error?.localizedDescription ?? "")")
-                            completion(false)
+                completion(false)
             }
             
             for document in documents!.documents{
-                
                 let tablePassportId = document.get("user_passport_id")
                 if(userPassportID == tablePassportId as! String){
                     completion(true)
