@@ -35,83 +35,106 @@ struct UserLoginView: View {
                 LinearGradient(gradient: Gradient(colors: [Color("Charcoal"), Color("DarkColorGradient")]), startPoint: .top, endPoint: .bottom)
                     .edgesIgnoringSafeArea(.vertical)
                 
-                //main VStack to arrange elements vertically underneath each other
-                VStack{
-                    
+                ScrollView{
+                    //main VStack to arrange elements vertically underneath each other
                     VStack{
-                        Image(systemName: "shekelsign.square")
-                            .padding(.top, 50)
-                            .padding(.bottom, 50)
-                            .font(.system(size: 75))
-                            .foregroundColor(Color("Yellow"))
-                        
-                        Text("Account Number")
-                            .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
-                            .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                            .multilineTextAlignment(.center)
-                        
-                        
-                        TextField("xxxx-xxxx-xxxx-xxxx", text: $accountNumber)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal, 8)
-                            .padding(.bottom, 20)
-                        
-                        Text("5-Digit Pin")
-                            .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
-                            .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                            .multilineTextAlignment(.center)
-                        
-                        TextField("xxxxx", text: $pinNumber)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .multilineTextAlignment(.center)
-                            .keyboardType(.decimalPad)
-                            .padding(.horizontal, 8)
-                        
-                        Spacer()
-                        
-                        Spacer()
-                        
-                        HStack{
+            
+                        VStack{
+                            Image(systemName: "shekelsign.square")
+                                .padding(.top, 50)
+                                .padding(.bottom, 50)
+                                .font(.system(size: 75))
+                                .foregroundColor(Color("Yellow"))
                             
-                            //button to request user login with credentials
-                            Button {
-                                let userViewModelInstance = UserViewModel()
-                                let userLoggedIn = userViewModelInstance.loginUser(
-                                    accountNumber: accountNumber,
-                                    pinCode: pinNumber)
+                            Text("Account Number")
+                                .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
+                                .foregroundColor(.white)
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.center)
+                            
+                            
+                            TextField("xxxx-xxxx-xxxx-xxxx", text: $accountNumber)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 8)
+                                .padding(.bottom, 20)
+                            
+                            Text("5-Digit Pin")
+                                .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
+                                .foregroundColor(.white)
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.center)
+                            
+                            TextField("xxxxx", text: $pinNumber)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .multilineTextAlignment(.center)
+                                .keyboardType(.decimalPad)
+                                .padding(.horizontal, 8)
+                            
+                            Spacer()
+                            
+                            Spacer()
+                            
+                            HStack{
+                                //button to request user login with credentials
                                 
-                                if(userLoggedIn){
-                                    //TODO REDIRECT TO A LOGIN VIEW Q_Q
-                                }else{
-                                    //TODO SHOW AN ALERT IF THE LOGIN FAILED
+                                NavigationLink(destination: AccountView().navigationBarBackButtonHidden(true), isActive: $isUserLoggedIn){
+                                    Button {
+                                        //---LOGIN CREDENTIALS VALIDATION---//
+                                        let isValidAccountNumber:Bool = CreditCardValidator().validateAccountNumber(accountNumber)
+                                        
+                                        let isValidPinCode: Bool = CreditCardValidator().validatePinCode(pinNumber)
+                                        //---LOGIN CREDENTIALS VALIDATION---//
+                                        
+                                        if(isValidAccountNumber && isValidPinCode){ //attempt login if input correct
+                                            let userViewModelInstance = UserViewModel()
+              	                              userViewModelInstance.loginUser(
+                                                userInputAccountNumber: accountNumber,
+                                                userInputPinCode: pinNumber, completion: { validLogin in
+                                                    if(validLogin) { //login successful
+                                                        self.isUserLoggedIn = true
+                                                    } else { //login failed
+                                                        self.showLoginAlert = true
+                                                        loginAlertString = "\n INCORRECT LOGIN CREDENTIALS"
+                                                    }
+                                                })
+                                        } else {
+                                            //ON VALIDATION FAILURE, SHOW WHICH FIELDS FAILED
+                                            self.showLoginAlert = true
+                                            
+                                            if(!isValidAccountNumber) {
+                                                loginAlertString = loginAlertString + "Account Number \n"
+                                            }
+                                            
+                                            if(!isValidPinCode) {
+                                                loginAlertString = loginAlertString + "5-Digit Pin \n"
+                                            }
+                                        }
+                                    } label: {
+                                        Text("Login")
+                                            .fontWeight(.semibold)
+                                            .font(.title)
+                                    }//---ERROR ALERT POP-UP---//
+                                    .alert(isPresented: $showLoginAlert, content: {
+                                        return getValidationErrors()
+                                    })
                                 }
+                                .padding([.horizontal], 80)
+                                .padding([.vertical], 10)
                                 
-                                
-                            } label: {
-                                Text("Login")
-                                    .fontWeight(.semibold)
-                                    .font(.title)
+                                .foregroundColor(Color("Charcoal"))
+                                .background(LinearGradient(gradient: Gradient(colors: [Color("Yellow"), Color("LighterYellow")]), startPoint: .leading, endPoint: .trailing))
+                                .cornerRadius(25)
                             }
-                            
-                            .padding([.horizontal], 80)
-                            .padding([.vertical], 10)
-                            
-                            .foregroundColor(Color("Charcoal"))
-                            .background(LinearGradient(gradient: Gradient(colors: [Color("Yellow"), Color("LighterYellow")]), startPoint: .leading, endPoint: .trailing))
-                            .cornerRadius(25)
+                            .padding(.bottom, 25)
                         }
-                        .padding(.bottom, 25)
-                    }
-
-                    Spacer()
-                    
-                    NavigationLink(
-                        destination: UserSignUpView()){
-                            Text("Sign Up") //this sign up text sends the user to the sign up view
-                        }
+                        
+                        Spacer()
+                        
+                        NavigationLink(
+                            destination: UserSignUpView()){
+                                Text("Sign Up") //this sign up text sends the user to the sign up view
+                            }
                     }
                     .padding()
                 }
