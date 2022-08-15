@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 //configurations for credit card format
-let amountOfDigitsInAccountNumberCountingHyphens = 19
 let amountOfDigitsInAccountNumber = 16
 
 struct CreditCardValidator {
@@ -22,7 +21,7 @@ struct CreditCardValidator {
         
         let sanitizedAccountNumber = accountNumber.digits
         
-        if(sanitizedAccountNumber.count <= amountOfDigitsInAccountNumberCountingHyphens && sanitizedAccountNumber.count >= amountOfDigitsInAccountNumber) {
+        if(sanitizedAccountNumber.count == amountOfDigitsInAccountNumber) {
             for (_, number) in sanitizedAccountNumber.enumerated() {
                 
                 if(number.isNumber) {
