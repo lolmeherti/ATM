@@ -355,6 +355,23 @@ struct UserSignUpView: View {
         }))
     }
     
+    //this function exists to display the automatically generated account number and pin code after the user signed-up
+    //the user doesn't have the option to choose custom account numbers or pin codes
+    //this is why the login credentials have to be delivered back to the front end
+    func setSuccessAlert(accountNumber:String, pinCode:String) {
+        self.signUpAlertTitle = "Registration successful!"
+        self.signUpAlertString = """
+                                Please manually navigate back to the login page.
+                                
+                                Your account number is:
+                                \(accountNumber)
+                                
+                                Your pin code is:
+                                \(pinCode)
+                                """
+        self.signUpAlertButtonText = "CONTINUE"
+    }
+    
     //---ALERT FUNCTIONS---//
 }
 
