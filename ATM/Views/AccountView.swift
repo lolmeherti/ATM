@@ -8,13 +8,22 @@
 import SwiftUI
 
 struct AccountView: View {
+    
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            LinearGradient(gradient: Gradient(colors: [Color("Charcoal"), Color("DarkColorGradient")]), startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.vertical)
+                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            
+            
+        }
     }
-}
-
-struct AccountView_Previews: PreviewProvider {
-    static var previews: some View {
-        AccountView()
+    
+    struct AccountView_Previews: PreviewProvider {
+        static var previews: some View {
+            AccountView()
+        }
     }
 }
