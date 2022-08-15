@@ -104,6 +104,14 @@ struct UserLoginView: View {
             }
         }
     }
+    
+    func getValidationErrors() -> Alert{
+        return Alert(title: Text(loginAlertTitle), message: Text(loginAlertString), dismissButton: .default(Text(loginAlertButtonText),                                action: {
+            //---RESETS ERROR MESSAGE WHEN "TRY AGAIN"---//
+            self.loginAlertString = "The following field(s) are empty or incorrect:\n"
+        }))
+    }
+}
 
 
 struct UserLoginView_Previews: PreviewProvider {
