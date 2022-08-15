@@ -10,6 +10,9 @@ import SwiftUI
 
 //configurations for credit card format
 let amountOfDigitsInAccountNumber = 16
+let amountOfDigitsInPinCode = 4
+let pinCodeMinimumValue = 1000
+let pinCodeMaximumValue = 9999
 
 struct CreditCardValidator {
 
@@ -29,6 +32,15 @@ struct CreditCardValidator {
                     return true
                 }
             }
+        }
+        return false
+    }
+    
+    public func validatePinCode(_ pinCode: String) -> Bool {
+        let sanitizedPinCode: Int = Int(pinCode.digits) ?? 0
+        
+        if(sanitizedPinCode >= pinCodeMinimumValue && sanitizedPinCode <= pinCodeMaximumValue) {
+            return true
         }
         return false
     }
