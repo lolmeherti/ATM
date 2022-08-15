@@ -8,9 +8,23 @@
 import SwiftUI
 
 struct UserLoginView: View {
-    
+    //---CREDIT CARD PROPERTIES---//
     @State var accountNumber: String = ""
     @State var pinNumber: String = ""
+    @State var isUserLoggedIn: Bool = false
+    @State var showLoginAlert: Bool = false
+    //---CREDIT CARD PROPERTIES---//
+    
+    
+    //---ERROR VARIABLES---//
+    @State var showSignUpAlert: Bool = false
+    //---ERROR VARIABLES---//
+    
+    //---ALERT TEXT CONFIG---//
+    @State var loginAlertTitle:String = "Error"
+    @State var loginAlertString:String = "The following field(s) are empty or incorrect:\n"
+    @State var loginAlertButtonText:String = "TRY AGAIN"
+    //---ALERT TEXT CONFIG---//
     
     var body: some View {
         NavigationView{
