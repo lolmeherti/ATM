@@ -156,5 +156,50 @@ class UserViewModel: ObservableObject{
         }
     }
     
+    func getUserDetailsByAccountNumber(accountNumber:String, completion: @escaping ([String:Any]) -> Void){
+        let db = Firestore.firestore()
+        //no parameter validation because the data passed into this function gets validated before the function is used
+        let dbQueryForCreditCardInformation = db.collection("card_table").whereField("card_account_number", isEqualTo: accountNumber)
+        
+        dbQueryForCreditCardInformation.getDocuments() {(documents, error) in
+            
+            if(error != nil) {
+                print("Error: \(error?.localizedDescription ?? "")")
+            }
+            
+            for document in documents!.documents{
+                
+                let userReference = db.collection("user_table").document(document.get("user_foreign_id") as! String)
+                
+                userReference.getDocument() {(user, error) in
+                    
+                    if let user = user, user.exists{
+                        let userData = user.data()
+                        
+                        let userDetails:[String:Any] = [
+                            "Account_Number":document.get("card_account_number") ?? "",
+                            "Pin_Code":document.get("card_pin_code") ?? "",
+                            "Balance":document.get("card_balance") ?? "",
+                            "Cvc":document.get("card_cvc") ?? "",
+                            "Expiration_Date":document.get("card_expiration_date") ?? "",
+                            "Creation_Time":document.get("card_timestamp") ?? Date(),
+                            "User_Foreign_Key":document.get("user_foreign_id") ?? "",
+                            "First_Name":userData?["user_first_name"] ?? "",
+                            "Last_Name":userData?["user_last_name"] ?? "",
+                            "Passport_ID":userData?["user_passport_id"] ?? "",
+                            "Email":userData?["user_email"] ?? "",
+                            "Phone_Number":userData?["user_phone_number"] ?? "",
+                            "Date_Of_Birth":userData?["user_date_of_birth"] ?? "",
+                            "Address":userData?["user_address"] ?? "",
+                            "Country":userData?["user_country"] ?? "",
+                            "Role":userData?["user_role"]  ?? ""
+                        ]
+                        completion(userDetails)
+                    }
+                }
+            }
+        }
+    }
+    
 }
 
