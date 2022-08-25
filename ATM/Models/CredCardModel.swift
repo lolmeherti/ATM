@@ -14,7 +14,6 @@ struct CreditCardModel: Identifiable {
     var accountNumber:Int
     var pin_code:Int
     var cvc:Int
-    var transactions:String
     var balance:Float
     var expiration_date:Date
     var timestamp:Date
