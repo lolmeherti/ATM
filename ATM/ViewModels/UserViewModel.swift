@@ -91,6 +91,7 @@ class UserViewModel: ObservableObject{
 //                                    phone_number: users["user_phone_number"] as? String ?? "",
 //                                    date_of_birth: users["user_date_of_birth"] as? Date ?? Date(),
 //                                    address: users["user_address"] as? String ?? "",
+//                                    country: users["user_country"] as? String ?? "",
 //                                    timestamp: users["user_timestamp"] as? Date ?? Date(),
 //                                    role: users["user_role"] as? String ?? ""
 //                                )
