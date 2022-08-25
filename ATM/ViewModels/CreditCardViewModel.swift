@@ -10,7 +10,7 @@ import Firebase
 import SwiftUI
 
 class CreditCardViewModel{
-    @Published var creditCardModel = [CreditCardModel]()
+    let signUpBonusBalance:Double = 50.0
     
     
     //---GENERATES CREDIT CARD DETAILS FOR A FRESHLY SIGNED UP USER---//
@@ -23,6 +23,9 @@ class CreditCardViewModel{
         creditCardReference = db.collection("card_table").addDocument(data: [
             "card_account_number":generateCreditCardAccountNumber(),
             "card_pin_code":generatePinCode(),
+            "card_balance":signUpBonusBalance, //SIGN UP BONUS
+            "card_cvc":generateCvc(),
+            "card_expiration_date": generateExpirationDate() ?? Date(),//coalescing safety measure never comes into play
             "card_timestamp":Date(),
             "user_foreign_id":userId
         ]) { error in
@@ -54,6 +57,10 @@ class CreditCardViewModel{
         return String(Int.random(in: 1000..<10000))
     }
     
+    func generateCvc() -> String{
+        return String(Int.random(in: 100..<1000))
+    }
+    
     func getCreditCardDetailsById(creditCardId:String, completion: @escaping ([String:Any]) -> Void){
         let db = Firestore.firestore()
         
@@ -69,4 +76,12 @@ class CreditCardViewModel{
         }
     }
     
+    func generateExpirationDate() -> Date? {
+        //the calendar will always deliver the correct year back. ignore coalescing, its a safety measure that never comes into play
+        let expirationYear = (Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year ?? 2050) + 2
+        let month = Calendar(identifier: .gregorian).dateComponents([.month], from: .now).month ?? 1
+        let day = Calendar(identifier: .gregorian).dateComponents([.day], from: .now).day ?? 1
+        
+        return Date.from(year: expirationYear, month: month, day: day) ?? nil
+    }
 }
