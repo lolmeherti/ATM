@@ -124,7 +124,7 @@ class UserViewModel: ObservableObject{
     }
     
     //---LOGS USER IN IF THE ACCOUNT NUMBER AND THE PIN CODE MATCH A DATABASE ENTRY---//
-    public func loginUser(userInputAccountNumber:String, userInputPinCode:String, completion: @escaping (Bool) -> Void) {
+    func loginUser(userInputAccountNumber:String, userInputPinCode:String, completion: @escaping (Bool) -> Void) {
         let db = Firestore.firestore()
         let dbQuery = db.collection("card_table").whereField("card_account_number", isEqualTo: userInputAccountNumber)
         
@@ -143,7 +143,7 @@ class UserViewModel: ObservableObject{
                 for document in documents!.documents{
                     pinCode = document.get("card_pin_code") as? String ?? ""
                 }
-               
+                
                 if(userInputPinCode == pinCode){
                     completion(true)
                     return
