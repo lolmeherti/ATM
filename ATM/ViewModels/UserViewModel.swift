@@ -12,6 +12,28 @@ import SwiftUI
 class UserViewModel: ObservableObject{
     @Published var insertSuccessful = true
     @Published var users: [UserModel] = []
+    @Published var currentUser:UserModel
+    
+    init(){
+        //---INITIALISING USERMODEL WITH DEFAULT VALUES---//
+        currentUser = UserModel(
+            id: "DefaultValue",
+            firstName: "DefaultValue",
+            lastName: "DefaultValue",
+            passportId: "DefaultValue",
+            email: "DefaultValue",
+            phoneNumber: "DefaultValue",
+            dateOfBirth: Date(),
+            timestamp: Date(),
+            address: "DefaultValue",
+            country: "DefaultValue",
+            role: "DefaultValue",
+            pinCode: "DefaultValue",
+            accountNumber: "DefaultValue",
+            balance:0,
+            cvc:"DefaultValue",
+            card_expiration_date: Date()
+        )}
     
     //Creates a new user
     //Takes array as parameter and expects array keys: first_name, last_name, passport_id, email, phone_number,date_of_birth,address,country, timestamp and role
