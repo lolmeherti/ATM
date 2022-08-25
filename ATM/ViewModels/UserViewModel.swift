@@ -201,5 +201,23 @@ class UserViewModel: ObservableObject{
         }
     }
     
+    func setCurrentUserDetails(userDetails:[String:Any]) {
+        currentUser.phoneNumber = userDetails["Phone_Number"] as? String ?? ""
+        currentUser.country = userDetails["Country"] as? String ?? ""
+        currentUser.id = userDetails["User_Foreign_Key"] as? String ?? ""
+        currentUser.balance = userDetails["Balance"] as? Double ?? 0
+        currentUser.cvc = userDetails["Cvc"] as? String ?? ""
+        currentUser.card_expiration_date = userDetails["Expiration_Date"] as? Date ?? Date()
+        currentUser.pinCode = userDetails["Pin_Code"] as? String ?? ""
+        currentUser.address = userDetails["Address"] as? String ?? ""
+        currentUser.email = userDetails["Email"] as? String ?? ""
+        currentUser.passportId = userDetails["Passport_ID"] as? String ?? ""
+        currentUser.timestamp = userDetails["Creation_Time"] as? Date ?? Date()
+        currentUser.lastName = userDetails["Last_Name"] as? String ?? ""
+        currentUser.firstName = userDetails["First_Name"] as? String ?? ""
+        currentUser.accountNumber = userDetails["Account_Number"] as? String ?? ""
+        currentUser.dateOfBirth = userDetails["Date_Of_Birth"] as? Date ?? Date()
+        currentUser.role = userDetails["Role"] as? String ?? ""
+    }
 }
 
