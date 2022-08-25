@@ -32,7 +32,7 @@ struct AccountInfoView: View {
                         Text("IBAN:")
                             .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
                             .foregroundColor(.white)
-                        Text("2591-5311-2321-9961")
+                        Text(userInstance.currentUser.accountNumber)
                             .foregroundColor(Color("DarkColorGradient"))
                             .font(.system(size:20, weight: .bold, design: .rounded))
                         
@@ -43,13 +43,13 @@ struct AccountInfoView: View {
                         Text("Valid:")
                             .foregroundColor(.white)
                             .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
-                        Text("12/23")
+                        Text(userInstance.currentUser.card_expiration_date, style: .date)
                             .foregroundColor(Color("DarkColorGradient"))
                         Spacer()
                         Text("CVC:")
                             .foregroundColor(.white)
                             .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
-                           Text("525")
+                        Text(userInstance.currentUser.cvc)
                             .foregroundColor(Color("DarkColorGradient"))
                     }
                     .offset(x: 0, y: -25)
@@ -57,8 +57,8 @@ struct AccountInfoView: View {
                     
                     
                     HStack{
-                        Text("FirstName")
-                        Text("LastName")
+                        Text(userInstance.currentUser.firstName)
+                        Text(userInstance.currentUser.lastName)
                     }
                     .font(.system(size:22, weight: .bold, design: .rounded))
                     .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
@@ -70,7 +70,7 @@ struct AccountInfoView: View {
                         Text("Balance:")
                             .foregroundColor(.white)
                             .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
-                        Text("2.501.91")
+                        Text(String(userInstance.currentUser.balance))
                             .foregroundColor(Color("DarkColorGradient"))
                             .font(.system(size:20, weight: .bold, design: .rounded))
                     }
