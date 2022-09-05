@@ -35,7 +35,7 @@ struct AccountInfoView: View {
                             .font(.system(size:20, weight: .bold, design: .rounded))
                         
                     }
-                    .offset(x: 0, y: -20)
+                    .offset(x: 0, y: -15)
                     
                     HStack(){
                         Text("Valid:")
@@ -71,7 +71,7 @@ struct AccountInfoView: View {
                             .foregroundColor(Color("DarkColorGradient"))
                             .font(.system(size:20, weight: .bold, design: .rounded))
                     }
-                    .offset(x: 70, y: 20)
+                    .offset(x: 70, y: 15)
                 }
                 .font(.system(size:16, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
@@ -84,6 +84,10 @@ struct AccountInfoView: View {
             userInstance.getUserDetailsByAccountNumber(accountNumber: userInstance.currentUser.accountNumber) {
                 userDetails in
                 userInstance.setCurrentUserDetails(userDetails: userDetails)
+                
+                //adding this toggle here forces the userInstance ViewModelInstance to update a property
+                //by changing this property, we trigger a force redraw of the UI
+                //making sure that our values are the most recent
                 userInstance.forceReload.toggle()
             }
         }
