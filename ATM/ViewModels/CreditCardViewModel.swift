@@ -84,4 +84,32 @@ class CreditCardViewModel{
         
         return Date.from(year: expirationYear, month: month, day: day) ?? nil
     }
+    
+    func withdrawFromAccountBalance(accountNumber:String, withdrawAmount:Double, completion: @escaping (Double) -> Void)  {
+        let db = Firestore.firestore()
+        
+        db.collection("card_table").whereField("card_account_number", isEqualTo: accountNumber).getDocuments { documents, error in
+            for document in documents!.documents {
+                let currentBalance = document.get("card_balance") as? Double ?? 0
+                if(currentBalance >= withdrawAmount){
+                    let bankAccount = db.collection("card_table").document(document.documentID)
+                    let newBalance = currentBalance - withdrawAmount
+                    bankAccount.updateData(["card_balance":newBalance])
+                    UserViewModel().setCurrentUserDetails(userDetails: ["Balance":newBalance])
+                    completion(newBalance)
+                }
+            }
+        }
+    }
+    
+    func getCurrentAccountBalance(accountNumber:String, completion: @escaping (Double) -> Void) {
+        let db = Firestore.firestore()
+        db.collection("card_table").whereField("card_account_number", isEqualTo: accountNumber).getDocuments { documents, error in
+            for document in documents!.documents {
+                let currentBalance = document.get("card_balance") as? Double ?? 0
+                completion(currentBalance)
+            }
+        }
+    }
+    
 }
