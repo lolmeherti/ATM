@@ -130,6 +130,7 @@ class UserViewModel: ObservableObject{
                     return
                 } else {
                     completion(false)
+                    return
                 }
             }
         }
