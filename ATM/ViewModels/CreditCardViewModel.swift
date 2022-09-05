@@ -102,6 +102,23 @@ class CreditCardViewModel{
         }
     }
     
+    func depositToAccountBalance(accountNumber:String, depositAmount:Double, completion: @escaping (Double) -> Void)  {
+        let db = Firestore.firestore()
+        
+        db.collection("card_table").whereField("card_account_number", isEqualTo: accountNumber).getDocuments { documents, error in
+            for document in documents!.documents {
+                let currentBalance = document.get("card_balance") as? Double ?? 0
+                if(depositAmount > 0){
+                    let bankAccount = db.collection("card_table").document(document.documentID)
+                    let newBalance = currentBalance + depositAmount
+                    bankAccount.updateData(["card_balance":newBalance])
+                    UserViewModel().setCurrentUserDetails(userDetails: ["Balance":newBalance])
+                    completion(newBalance)
+                }
+            }
+        }
+    }
+    
     func getCurrentAccountBalance(accountNumber:String, completion: @escaping (Double) -> Void) {
         let db = Firestore.firestore()
         db.collection("card_table").whereField("card_account_number", isEqualTo: accountNumber).getDocuments { documents, error in
