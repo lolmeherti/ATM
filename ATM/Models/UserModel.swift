@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-class UserModel: Identifiable, ObservableObject {
+final class UserModel: Identifiable, ObservableObject {
     
     @Published var id:String
     @Published var firstName:String
@@ -27,39 +27,23 @@ class UserModel: Identifiable, ObservableObject {
     @Published var card_expiration_date:Date
     @Published var timestamp:Date
     
-    init(id:String,
-         firstName:String,
-         lastName:String,
-         passportId:String,
-         email:String,
-         phoneNumber:String,
-         dateOfBirth:Date,
-         timestamp:Date,
-         address:String,
-         country:String,
-         role:String,
-         pinCode:String,
-         accountNumber:String,
-         balance:Double,
-         cvc:String,
-         card_expiration_date:Date
-    ){
-        self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
-        self.passportId = passportId
-        self.email = email
-        self.phoneNumber = phoneNumber
-        self.dateOfBirth = dateOfBirth
-        self.timestamp = timestamp
-        self.address = address
-        self.country = country
-        self.role = role
-        self.pinCode = pinCode
-        self.accountNumber = accountNumber
-        self.balance = balance
-        self.cvc = cvc
-        self.card_expiration_date = card_expiration_date
+    init(){
+        self.id = "DefaultValue"
+        self.firstName = "DefaultValue"
+        self.lastName = "DefaultValue"
+        self.passportId = "DefaultValue"
+        self.email = "DefaultValue"
+        self.phoneNumber = "DefaultValue"
+        self.dateOfBirth = Date()
+        self.timestamp = Date()
+        self.address = "DefaultValue"
+        self.country = "DefaultValue"
+        self.role = "DefaultValue"
+        self.pinCode = "DefaultValue"
+        self.accountNumber = "DefaultValue"
+        self.balance = 0
+        self.cvc = "DefaultValue"
+        self.card_expiration_date = Date()
     }
 }
 
