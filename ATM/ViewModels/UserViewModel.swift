@@ -180,7 +180,7 @@ class UserViewModel: ObservableObject{
                             "Pin_Code":document.get("card_pin_code") ?? "",
                             "Balance":document.get("card_balance") ?? "",
                             "Cvc":document.get("card_cvc") ?? "",
-                            "Expiration_Date":document.get("card_expiration_date") ?? "",
+                            "Expiration_Date":document.get("card_expiration_date") ?? Date(),
                             "Creation_Time":document.get("card_timestamp") ?? Date(),
                             "User_Foreign_Key":document.get("user_foreign_id") ?? "",
                             "First_Name":userData?["user_first_name"] ?? "",
@@ -191,7 +191,8 @@ class UserViewModel: ObservableObject{
                             "Date_Of_Birth":userData?["user_date_of_birth"] ?? "",
                             "Address":userData?["user_address"] ?? "",
                             "Country":userData?["user_country"] ?? "",
-                            "Role":userData?["user_role"]  ?? ""
+                            "Role":userData?["user_role"]  ?? "",
+                            "userId":document.get("user_foreign_id") ?? ""
                         ]
                         completion(userDetails)
                     }
