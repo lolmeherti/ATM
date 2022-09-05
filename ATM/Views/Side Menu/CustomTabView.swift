@@ -46,8 +46,9 @@ struct CustomTabView: View {
                 WithdrawView()
                     .tag("Withdraw")
                 
-                Text("Deposit")
+                DepositView()
                     .tag("Deposit")
+                
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
