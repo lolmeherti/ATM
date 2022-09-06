@@ -34,7 +34,8 @@ struct UserLoginView: View {
     
     @ViewBuilder//marks view as view builder in order to be able to swap views
     var body: some View {
-        if(isUserLoggedIn){
+        
+        if(currentUser.isUserLoggedIn){
             AccountView()
                 .environmentObject(currentUser)
         } else {
