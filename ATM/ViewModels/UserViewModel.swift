@@ -156,20 +156,25 @@ class UserViewModel: ObservableObject{
                     if let user = user, user.exists{
                         let userData = user.data()
                         
+                        //converting FIRTimestamp objects to Date objects first
+                        let expirationDate = (document.get("card_expiration_date")! as AnyObject).dateValue()
+                        let creationTime = (document.get("card_timestamp")! as AnyObject).dateValue()
+                        let userDateOfBirth = (userData?["user_date_of_birth"]! as AnyObject).dateValue()
+                        
                         let userDetails:[String:Any] = [
                             "Account_Number":document.get("card_account_number") ?? "",
                             "Pin_Code":document.get("card_pin_code") ?? "",
                             "Balance":document.get("card_balance") ?? "",
                             "Cvc":document.get("card_cvc") ?? "",
-                            "Expiration_Date":document.get("card_expiration_date") ?? Date(),
-                            "Creation_Time":document.get("card_timestamp") ?? Date(),
+                            "Expiration_Date":expirationDate,
+                            "Creation_Time":creationTime,
                             "User_Foreign_Key":document.get("user_foreign_id") ?? "",
                             "First_Name":userData?["user_first_name"] ?? "",
                             "Last_Name":userData?["user_last_name"] ?? "",
                             "Passport_ID":userData?["user_passport_id"] ?? "",
                             "Email":userData?["user_email"] ?? "",
                             "Phone_Number":userData?["user_phone_number"] ?? "",
-                            "Date_Of_Birth":userData?["user_date_of_birth"] ?? "",
+                            "Date_Of_Birth":userDateOfBirth,
                             "Address":userData?["user_address"] ?? "",
                             "Country":userData?["user_country"] ?? "",
                             "Role":userData?["user_role"]  ?? "",
