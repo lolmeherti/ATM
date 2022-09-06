@@ -40,6 +40,10 @@ struct SideMenu: View {
                     
                     CustomTabButton(icon: "plus", title: "Deposit")
                     
+                    CustomTabButton(icon: "arrow.left.arrow.right", title: "Transfer")
+                    
+                    CustomTabButton(icon: "hourglass", title: "History")
+                    
                     Spacer()
                     
                     CustomTabButton(icon: "rectangle.portrait.and.arrow.right", title: "Logout")

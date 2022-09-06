@@ -49,6 +49,11 @@ struct CustomTabView: View {
                 DepositView()
                     .tag("Deposit")
                 
+                TransferView()
+                    .tag("Transfer")
+                
+                TransactionHistory()
+                    .tag("History")
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
