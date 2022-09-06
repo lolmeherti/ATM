@@ -96,7 +96,7 @@ struct DepositView: View {
                 userInstance.forceReload.toggle()
             }
         }
-        .onTapGesture {
+        .onTapGesture {//this will allow to unfocus from the text field, which closes the on screen keyboard
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
         }
         
