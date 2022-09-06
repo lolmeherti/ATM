@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SideMenu: View {
     
+    @EnvironmentObject var currentUser:UserViewModel
+    
     @Binding var currentTab: String
     
     var body: some View {
@@ -60,7 +62,7 @@ struct SideMenu: View {
         Button {
             
             if(title == "Logout"){
-                print("logout")
+                currentUser.isUserLoggedIn = false
             } else {
                 withAnimation(.linear(duration: 0.15)) {
                   currentTab = title

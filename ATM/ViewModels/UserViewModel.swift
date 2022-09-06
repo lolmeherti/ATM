@@ -13,6 +13,7 @@ class UserViewModel: ObservableObject{
     @Published var insertSuccessful = true
     //@Published var users: [UserModel] = []
     @Published var currentUser:UserModel = UserModel()
+    @Published var isUserLoggedIn:Bool = false
     @Published var forceReload:Bool = false
     
     //Creates a new user

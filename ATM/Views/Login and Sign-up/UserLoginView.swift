@@ -104,7 +104,7 @@ struct UserLoginView: View {
                                                             
                                                             currentUser.setCurrentUserDetails(userDetails: userDetailsOfLoggedInUser)
                                                             
-                                                            self.isUserLoggedIn = true
+                                                            currentUser.isUserLoggedIn = true
                                                         }
                                                     } else {//login failed
                                                         self.showLoginAlert = true
