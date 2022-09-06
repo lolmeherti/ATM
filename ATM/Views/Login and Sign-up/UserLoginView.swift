@@ -70,13 +70,13 @@ struct UserLoginView: View {
                                     .padding(.horizontal, 8)
                                     .padding(.bottom, 20)
                                 
-                                Text("5-Digit Pin")
+                                Text("Pin Code")
                                     .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
                                     .foregroundColor(.white)
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.center)
                                 
-                                TextField("xxxxx", text: $pinNumber)
+                                TextField("xxxx", text: $pinNumber)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                                     .multilineTextAlignment(.center)
                                     .keyboardType(.decimalPad)
