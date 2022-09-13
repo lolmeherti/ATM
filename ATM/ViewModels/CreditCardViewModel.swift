@@ -129,4 +129,16 @@ class CreditCardViewModel{
         }
     }
     
+    func isAccountNumberRegistered(accountNumber:String, completion: @escaping(Bool) -> Void){
+        let db = Firestore.firestore()
+        db.collection("card_table").whereField("card_account_number", isEqualTo: accountNumber).getDocuments { documents, error in
+            
+            //checking if the input account number is registered in the db
+            if(documents!.isEmpty){
+                completion(false)
+            } else {
+                completion(true)
+            }
+        }
+    }
 }
