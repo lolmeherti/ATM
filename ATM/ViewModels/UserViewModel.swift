@@ -11,7 +11,6 @@ import SwiftUI
 
 class UserViewModel: ObservableObject{
     @Published var insertSuccessful = true
-    //@Published var users: [UserModel] = []
     @Published var currentUser:UserModel = UserModel()
     @Published var isUserLoggedIn:Bool = false
     @Published var forceReload:Bool = false
@@ -53,35 +52,6 @@ class UserViewModel: ObservableObject{
         }
         return self.insertSuccessful
     }
-    
-//    public func getAllUsers(){
-//
-//            let db = Firestore.firestore()
-//
-//            db.collection("user_table").getDocuments{ userTableContent, error in
-//                if(error == nil) {
-//                    if let userTableContent = userTableContent {
-//                        DispatchQueue.main.async {
-//                            self.users = userTableContent.documents.map { users in
-//                                return UserModel(
-//                                    id: users.documentID,
-//                                    first_name: users["user_first_name"] as? String ?? "",
-//                                    last_name: users["user_last_name"] as? String ?? "",
-//                                    passport_id: users["user_passport_id"] as? String ?? "",
-//                                    email: users["user_email"] as? String ?? "",
-//                                    phone_number: users["user_phone_number"] as? String ?? "",
-//                                    date_of_birth: users["user_date_of_birth"] as? Date ?? Date(),
-//                                    address: users["user_address"] as? String ?? "",
-//                                    country: users["user_country"] as? String ?? "",
-//                                    timestamp: users["user_timestamp"] as? Date ?? Date(),
-//                                    role: users["user_role"] as? String ?? ""
-//                                )
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
     
     //---user_passport_id IS UNIQUE TO EACH USER AND IS USED TO CHECK FOR DUPLICATE USERS IN THE DATABASE---//
     func isUserDuplicate(userPassportID:String, completion: @escaping (Bool) -> Void){
