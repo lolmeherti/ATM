@@ -86,7 +86,7 @@ struct UserSignUpView: View {
                             
                             VStack{
                                 Text("Last Name")
-                                    .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
+                                    .font(.title2)
                                     .foregroundColor(.white)
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.center)
@@ -349,7 +349,6 @@ struct UserSignUpView: View {
     }
     
     //---ALERT FUNCTIONS---//
-    
     func getValidationErrors() -> Alert{
         return Alert(title: Text(signUpAlertTitle), message: Text(signUpAlertString), dismissButton: .default(Text(signUpAlertButtonText),                                action: {
             //---RESETS ERROR MESSAGE WHEN "TRY AGAIN"---//

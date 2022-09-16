@@ -42,7 +42,7 @@ struct TransferView: View {
                 Group{
                     VStack{
                         Text("Recipient Information")
-                            .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
+                            .font(.title2)
                             .fontWeight(.semibold)
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color("LighterYellow"))
@@ -231,9 +231,7 @@ struct TransferView: View {
                                 """
         self.transferAlertButtonText = "TRY AGAIN"
     }
-    
 }
-
 
 
 struct TransferView_Previews: PreviewProvider {
