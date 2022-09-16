@@ -12,13 +12,15 @@ import SwiftUI
 class CreditCardViewModel{
     let signUpBonusBalance:Double = 50.0
     
-    
     //---GENERATES CREDIT CARD DETAILS FOR A FRESHLY SIGNED UP USER---//
     func generateCreditCardForUserById(userId:String, completion: @escaping ([String:Any]) -> Void) {
         let db = Firestore.firestore()
         
         var creditCardReference:DocumentReference? = nil
         var creditCardDetails:[String:Any] = [:]
+        
+        //MARK: logs transaction
+        TransactionsViewModel().logDeposit(userId: userId, depositAmount: signUpBonusBalance)
         
         creditCardReference = db.collection("card_table").addDocument(data: [
             "card_account_number":generateCreditCardAccountNumber(),
