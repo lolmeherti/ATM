@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
-struct TransactionsModel: Identifiable{
+struct TransactionsModel: Identifiable, Hashable{
     var id:String
     var userForeignId:String
     var transactionAmount:Double
-    var recipient:String
-    var sender:String
+    var recipientFirstName:String
+    var recipientLastName:String
+    var transactionSubject:String
     var transactionType:String
     var transactionDate:Date
-    
 }
