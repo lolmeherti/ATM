@@ -12,28 +12,59 @@ import SwiftUI
 class TransactionsViewModel: Identifiable, ObservableObject {
     @Published var transactions:[TransactionsModel] = []
     
+    func getAllTransactionsByUserId(userId:String){
+        
+        let db = Firestore.firestore()
+        
+        db.collection("transaction_table")
+            .whereField("user_foreign_id", isEqualTo: userId)
+            .order(by: "transaction_date", descending: true)
+            .getDocuments{ transactionTableContent, error in
+            if(error == nil) {
+                if let transactionTableContent = transactionTableContent {
+                    DispatchQueue.main.async {
+                        self.transactions = transactionTableContent.documents.map { transaction in
+                            return TransactionsModel(
+                                id: transaction.documentID,
+                                userForeignId:transaction["user_foreign_id"] as? String ?? "",
+                                transactionAmount: transaction["transaction_amount"] as? Double ?? 0,
+                                recipientFirstName: transaction["transaction_recipient_first_name"] as? String ?? "",
+                                recipientLastName: transaction["transaction_recipient_last_name"] as? String ?? "",
+                                transactionSubject: transaction["transaction_subject"] as? String ?? "",
+                                transactionType: transaction["transaction_type"] as? String ?? "",
+                                transactionDate: transaction["transaction_date"] as? Date ?? Date()
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     func logWithdrawal(userId:String, withdrawAmount:Double){
         let db = Firestore.firestore()
         
         db.collection("transaction_table").addDocument(data:
-        [
-            "user_foreign_id":userId,
-            "transaction_amount":withdrawAmount,
-            "transaction_type":"Withdrawal",
-            "transaction_date":Date()
-        ])
+                                                        [
+                                                            "user_foreign_id":userId,
+                                                            "transaction_amount":withdrawAmount,
+                                                            "transaction_subject":"ATM",
+                                                            "transaction_type":"Withdrawal",
+                                                            "transaction_date":Date()
+                                                        ])
     }
     
     func logDeposit(userId:String, depositAmount:Double){
         let db = Firestore.firestore()
         
         db.collection("transaction_table").addDocument(data:
-        [
-            "user_foreign_id":userId,
-            "transaction_amount":depositAmount,
-            "transaction_type":"Deposit",
-            "transaction_date":Date()
-        ])
+                                                        [
+                                                            "user_foreign_id":userId,
+                                                            "transaction_amount":depositAmount,
+                                                            "transaction_subject":"ATM",
+                                                            "transaction_type":"Deposit",
+                                                            "transaction_date":Date()
+                                                        ])
     }
     
     func logTransfer(userId:String,
@@ -46,15 +77,15 @@ class TransactionsViewModel: Identifiable, ObservableObject {
         let db = Firestore.firestore()
         
         db.collection("transaction_table").addDocument(data:
-        [
-            "user_foreign_id":userId,
-            "transaction_recipient_last_name":recipientLastName,
-            "transaction_recipient_first_name":recipientFirstName,
-            "transaction_subject":transferSubject,
-            "transaction_amount":transferAmount,
-            "transaction_type":"Transfer",
-            "transaction_date":Date()
-        ])
+                                                        [
+                                                            "user_foreign_id":userId,
+                                                            "transaction_recipient_last_name":recipientLastName,
+                                                            "transaction_recipient_first_name":recipientFirstName,
+                                                            "transaction_subject":transferSubject,
+                                                            "transaction_amount":transferAmount,
+                                                            "transaction_type":"Transfer",
+                                                            "transaction_date":Date()
+                                                        ])
     }
     
     //executes callbacks needed for the transfer to complete
