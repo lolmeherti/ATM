@@ -29,7 +29,7 @@ struct DepositView: View {
                         .multilineTextAlignment(.center)
                         .offset(x: 0, y: 80)
                     
-                    Text("\(showBalance > 0 ? showBalance : userInstance.currentUser.balance, specifier: "%.2f")")
+                    Text("$\(showBalance > 0 ? showBalance : userInstance.currentUser.balance, specifier: "%.2f")")
                         .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
                         .fontWeight(.semibold)
                         .foregroundColor(Color("LighterYellow"))
@@ -44,7 +44,6 @@ struct DepositView: View {
                         .multilineTextAlignment(.center)
                         .offset(x: 0, y: 105)
                     
-                    
                     TextField("Amount to deposit", value: $depositAmount, format:.number)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .multilineTextAlignment(.center)
@@ -58,12 +57,14 @@ struct DepositView: View {
                     Button{
                         if(depositAmount > 0) {
                             CreditCardViewModel().depositToAccountBalance(accountNumber: userInstance.currentUser.accountNumber, depositAmount: depositAmount){ currentBalance in
+                                //instantly updates the current balance to match the balance after deposit
                                 showBalance = currentBalance
+                                //logs this transaction in the database
+                                TransactionsViewModel().logDeposit(userId: userInstance.currentUser.id, depositAmount: depositAmount)
                             }
                         } else {
                             showDepositAlert = true
                         }
-                        
                     } label: {
                         Text("Deposit")
                             .fontWeight(.semibold)
