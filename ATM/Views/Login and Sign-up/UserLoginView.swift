@@ -151,9 +151,11 @@ struct UserLoginView: View {
                         .padding()
                     }
                 }
+                .preferredColorScheme(.dark)
             }
         }
     }
+        
     
     func getValidationErrors() -> Alert{
         return Alert(title: Text(loginAlertTitle), message: Text(loginAlertString), dismissButton: .default(Text(loginAlertButtonText),                                action: {
