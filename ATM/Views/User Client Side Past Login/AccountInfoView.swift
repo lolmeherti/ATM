@@ -19,66 +19,79 @@ struct AccountInfoView: View {
                                startPoint: .topLeading,
                                endPoint: .bottom)
                 .opacity(1)
-                    .edgesIgnoringSafeArea(.vertical)
-                    .frame(width: 350, height: 200)
-                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                    .shadow(color: Color.black.opacity(0.8), radius: 15, x: 0, y: 10)
+                .edgesIgnoringSafeArea(.vertical)
+                .frame(width: 350, height: 200)
+                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                .shadow(color: Color.black.opacity(0.8), radius: 15, x: 0, y: 10)
                 
                 VStack(alignment: .center, spacing: 16){
                     
                     HStack(){
                         Text("IBAN:")
+                            .bold()
                             .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
                             .foregroundColor(.white)
                         Text(self.userInstance.currentUser.accountNumber)
+                            .bold()
                             .foregroundColor(Color("DarkColorGradient"))
-                            .font(.system(size:20, weight: .bold, design: .rounded))
                         
                     }
                     .offset(x: 0, y: -15)
                     
                     HStack(){
                         Text("Valid:")
+                            .bold()
                             .foregroundColor(.white)
                             .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
-                        Text(self.userInstance.currentUser.card_expiration_date, style: .date)
+                        Text(self.userInstance.currentUser.card_expiration_date, format: .dateTime.year().month())
+                            .bold()
                             .foregroundColor(Color("DarkColorGradient"))
                         Spacer()
                         Text("CVC:")
+                            .bold()
                             .foregroundColor(.white)
                             .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
                         Text(self.userInstance.currentUser.cvc)
+                            .bold()
                             .foregroundColor(Color("DarkColorGradient"))
                     }
                     .offset(x: 0, y: -25)
-                    .frame(width: 269)
-                    
+                    .frame(width: 240)
                     
                     HStack{
                         Text(self.userInstance.currentUser.firstName)
+                            .bold()
+                            .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
+                            .foregroundColor(.white)
+                            
                         Text(self.userInstance.currentUser.lastName)
+                            .bold()
+                            .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
+                            .foregroundColor(.white)
                     }
-                    .font(.system(size:22, weight: .bold, design: .rounded))
                     .foregroundColor(Color("DarkColorGradient"))
                     .offset(y: -10)
                     
                     
                     HStack{
                         Text("Balance:")
+                            .bold()
                             .foregroundColor(.white)
                             .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
-                        Text("\(self.userInstance.currentUser.balance, specifier: "%.2f")")
+                        Text("$\(self.userInstance.currentUser.balance, specifier: "%.2f")")
+                            .bold()
                             .foregroundColor(Color("DarkColorGradient"))
-                            .font(.system(size:20, weight: .bold, design: .rounded))
                     }
                     .offset(x: 70, y: 15)
                 }
-                .font(.system(size:16, weight: .bold, design: .rounded))
+                
                 .foregroundColor(.white)
+                
+                RecentTransactionsView()
+                    .offset(x: 0, y: 250)
             }
             .offset(x: 0, y: -220)
             .padding()
-            
         }
         .onAppear{
             userInstance.getUserDetailsByAccountNumber(accountNumber: userInstance.currentUser.accountNumber) {
