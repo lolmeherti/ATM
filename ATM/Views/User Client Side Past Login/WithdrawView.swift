@@ -31,7 +31,7 @@ struct WithdrawView: View {
                         .multilineTextAlignment(.center)
                         .offset(x: 0, y: 80)
                     
-                    Text("\(showBalance > 0 ? showBalance : userInstance.currentUser.balance, specifier: "%.2f")")
+                    Text("$\(showBalance > 0 ? showBalance : userInstance.currentUser.balance, specifier: "%.2f")")
                         .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
                         .fontWeight(.semibold)
                         .foregroundColor(Color("LighterYellow"))
@@ -59,9 +59,13 @@ struct WithdrawView: View {
                     
                     Button{
                         
-                        if(userInstance.currentUser.balance > withdrawAmount){
+                        if(userInstance.currentUser.balance > withdrawAmount &&
+                           withdrawAmount > 0){
                             CreditCardViewModel().withdrawFromAccountBalance(accountNumber: userInstance.currentUser.accountNumber, withdrawAmount: withdrawAmount){ currentBalance in
+                                //instantly updates the current balance to match the balance after withdrawal
                                 showBalance = currentBalance
+                                //logs this transaction in the database
+                                TransactionsViewModel().logWithdrawal(userId: userInstance.currentUser.id, withdrawAmount: withdrawAmount)
                             }
                         } else {
                             showWithdrawAlert = true
@@ -73,7 +77,7 @@ struct WithdrawView: View {
                             .font(.title)
                     }
                     .alert(isPresented: $showWithdrawAlert, content: {
-                        return Alert(title: Text(withdrawAlertTitle), message: Text(withdrawAlertString), dismissButton: .default(Text(withdrawAlertButtonText),                                action: {
+                        return Alert(title: Text(withdrawAlertTitle), message: Text(withdrawAlertString), dismissButton: .default(Text(withdrawAlertButtonText), action: {
                             //---RESETS ERROR MESSAGE WHEN "TRY AGAIN"---//
                             self.withdrawAlertString = "You have insufficient funds. You are trying to withdraw a higher amount than available in your balance."
                         }))
