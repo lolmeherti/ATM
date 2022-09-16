@@ -61,6 +61,12 @@ struct DepositView: View {
                                 showBalance = currentBalance
                                 //logs this transaction in the database
                                 TransactionsViewModel().logDeposit(userId: userInstance.currentUser.id, depositAmount: depositAmount)
+                                
+                                //MARK: show success alert
+                                depositAlertTitle = "SUCCESS!\n"
+                                depositAlertString = "You have deposited $\(depositAmount)\n"
+                                depositAlertButtonText = "CONTINUE"
+                                showDepositAlert = true
                             }
                         } else {
                             showDepositAlert = true

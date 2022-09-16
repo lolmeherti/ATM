@@ -66,8 +66,7 @@ struct TransferView: View {
                                     .multilineTextAlignment(.center)
                                     .padding(.horizontal, 8)
                                     .padding(.bottom, 20)
-                            }
-                            
+                            }    
                         }
                         
                         Text("Account Number")
@@ -182,6 +181,16 @@ struct TransferView: View {
                                 }
                             }
                         }
+                    } else {
+                        self.transferAlertTitle = "ERROR!"
+                        self.transferAlertString = """
+                                                
+                                                Please enter a valid account number!
+                                                
+                                                """
+                        self.transferAlertButtonText = "CONTINUE"
+                        
+                        showTransferAlert = true
                     }
                 } label: {
                     Text("Transfer")

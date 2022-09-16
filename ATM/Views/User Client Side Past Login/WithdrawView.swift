@@ -60,13 +60,28 @@ struct WithdrawView: View {
                     Button{
                         
                         if(userInstance.currentUser.balance > withdrawAmount &&
-                           withdrawAmount > 0){
+                           withdrawAmount >= 1){
                             CreditCardViewModel().withdrawFromAccountBalance(accountNumber: userInstance.currentUser.accountNumber, withdrawAmount: withdrawAmount){ currentBalance in
                                 //instantly updates the current balance to match the balance after withdrawal
                                 showBalance = currentBalance
                                 //logs this transaction in the database
                                 TransactionsViewModel().logWithdrawal(userId: userInstance.currentUser.id, withdrawAmount: withdrawAmount)
+                                
+                                //MARK: show success alert
+                                withdrawAlertTitle = "SUCCESS!\n"
+                                withdrawAlertString = "You have withdrawn $\(withdrawAmount)\n"
+                                withdrawAlertButtonText = "CONTINUE"
+                                showWithdrawAlert = true
+                                
+                                
+                                
                             }
+                        } else if(withdrawAmount <= 1){
+                            //MARK: show invalid amount alert
+                            withdrawAlertTitle = "ERROR!\n"
+                            withdrawAlertString = "Invalid withdraw amount.\n"
+                            withdrawAlertButtonText = "TRY AGAIN"
+                            showWithdrawAlert = true
                         } else {
                             showWithdrawAlert = true
                         }
