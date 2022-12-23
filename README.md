@@ -9,4 +9,36 @@ When the app first opens, the user is greeted with a Login view and a Registrati
 
 Here is what the registration process looks like:
 
-<video src="https://streamable.com/0x9u1q.mp4" controls loop></video>
+![](https://i.ibb.co/yV8J2fv/Registration-Adobe-Express.gif)
+
+The registration process generated a random card number and a random pin number. Those get saved into our NO-SQL Firebase Database.
+
+### Login
+
+We can use the generated credentials to authenticate ourselves to the app.
+
+![](https://i.ibb.co/5LLhqTv/Login-Adobe-Express.gif)
+
+### Withdraw
+
+When we register, we get a sign-up bonus of $50. Let's see how to withdraw some of our bonus funds.
+
+![](https://i.ibb.co/qjGgV79/withdrawal-Adobe-Express.gif)
+
+### Deposit
+Let's say we have cash in surplus and we want to deposit some of that.
+
+![](https://i.ibb.co/QdyCTKp/deposit-Adobe-Express.gif)
+
+### Transfer
+
+Finally, we have the transfer feature. If a valid account number is entered, we can transfer funds to it.
+
+![](https://i.ibb.co/gZqjxBp/transfer-Adobe-Express.gif)
+
+### Technical details
+
+The app works with Firebase and does all the normal CRUD operations + joint custom queries are built on firebase.
+We also have thorough form input validaiton.
+The app is built using SwiftUI and Swift.
+No libraries or any other dependencies are used or required to run the app.
