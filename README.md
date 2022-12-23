@@ -34,7 +34,7 @@ Let's say we have cash in surplus and we want to deposit some of that.
 
 Finally, we have the transfer feature. If a valid account number is entered, we can transfer funds to it.
 
-![](https://i.ibb.co/4YyYp40/vlc-f-Dmwr-Zh-HJm.gif)
+![](https://i.ibb.co/Y8JN71n/vlc-Ya-Ul3dstgl.gif)
 
 ### Technical details
 
