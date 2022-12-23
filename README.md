@@ -9,7 +9,7 @@ When the app first opens, the user is greeted with a Login view and a Registrati
 
 Here is what the registration process looks like:
 
-<img src="https://i.ibb.co/3RVCKqr/vlc-Ho-Du-Gx-RCAD.gif">
+<img src="https://i.ibb.co/qk0Qt8W/vlc-ZEOOFk-FFYv.gif">
 
 The registration process generated a random card number and a random pin number. Those get saved into our NO-SQL Firebase Database.
 
