@@ -9,7 +9,7 @@ When the app first opens, the user is greeted with a Login view and a Registrati
 
 Here is what the registration process looks like:
 
-![](https://i.ibb.co/yV8J2fv/Registration-Adobe-Express.gif)
+![](https://i.ibb.co/XVbKvJb/vlc-s-Mp-M3xwoy-D.gif)
 
 The registration process generated a random card number and a random pin number. Those get saved into our NO-SQL Firebase Database.
 
@@ -17,13 +17,13 @@ The registration process generated a random card number and a random pin number.
 
 We can use the generated credentials to authenticate ourselves to the app.
 
-![](https://i.ibb.co/5LLhqTv/Login-Adobe-Express.gif)
+![](https://i.ibb.co/FhvgDQC/vlc-Pj-MNjsbzch.gif)
 
 ### Withdraw
 
 When we register, we get a sign-up bonus of $50. Let's see how to withdraw some of our bonus funds.
 
-![](https://i.ibb.co/qjGgV79/withdrawal-Adobe-Express.gif)
+![](https://i.ibb.co/MD9KxSq/vlc-t-HY08-UMC3-I.gif)
 
 ### Deposit
 Let's say we have cash in surplus and we want to deposit some of that.
