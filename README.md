@@ -28,8 +28,6 @@ When we register, we get a sign-up bonus of $50. Let's see how to withdraw some 
 ### Deposit
 Let's say we have cash in surplus and we want to deposit some of that.
 
-![](https://i.ibb.co/nwRDmXJ/vlc-d6-Wy1-Jx-I26.gif)
-
 <img src="https://i.ibb.co/nwRDmXJ/vlc-d6-Wy1-Jx-I26.gif">
 
 ### Transfer
