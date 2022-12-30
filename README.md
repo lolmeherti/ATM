@@ -9,7 +9,7 @@ When the app first opens, the user is greeted with a Login view and a Registrati
 
 Here is what the registration process looks like:
 
-<img src="https://i.ibb.co/qk0Qt8W/vlc-ZEOOFk-FFYv.gif">
+<img src="https://github.com/lolmeherti/ATM/blob/master/atm_gifs/atm_register.gif">
 
 The registration process generated a random card number and a random pin number. Those get saved into our NO-SQL Firebase Database.
 
@@ -17,24 +17,24 @@ The registration process generated a random card number and a random pin number.
 
 We can use the generated credentials to authenticate ourselves to the app.
 
-<img src="https://i.ibb.co/mBqQDnH/vlc-7-U6-XAy-Hw-LW.gif">
+<img src="https://github.com/lolmeherti/ATM/blob/master/atm_gifs/atm_login.gif">
 
 ### Withdraw
 
 When we register, we get a sign-up bonus of $50. Let's see how to withdraw some of our bonus funds.
 
-<img src="https://i.ibb.co/hBmLmr2/vlc-ZHay-Qo-Cv8-H.gif">
+<img src="https://github.com/lolmeherti/ATM/blob/master/atm_gifs/atm_withdraw.gif">
 
 ### Deposit
 Let's say we have cash in surplus and we want to deposit some of that.
 
-<img src="https://i.ibb.co/nwRDmXJ/vlc-d6-Wy1-Jx-I26.gif">
+<img src="https://github.com/lolmeherti/ATM/blob/master/atm_gifs/atm_deposit.gif">
 
 ### Transfer
 
 Finally, we have the transfer feature. If a valid account number is entered, we can transfer funds to it.
 
-<img src="https://i.ibb.co/Y8JN71n/vlc-Ya-Ul3dstgl.gif">
+<img src="https://github.com/lolmeherti/ATM/blob/master/atm_gifs/atm_transfer.gif">
 
 ### Technical details
 
